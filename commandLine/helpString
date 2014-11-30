@@ -1,0 +1,19 @@
+THIS PROGRAM IS FREE SOFTWARE MADE BY Aleksander (Alex) Baranowski under GPL V2 License
+You can use, share, change it :) (everything is described here http://www.gnu.org/licenses/gpl-2.0.html)
+
+This program can calculate 3,4, 5, 6 bands resistor.
+First argument is [number] which determines how many bands do you have :).
+Then you have to put colors
+black   =   bl [black]
+brown   =   br [brown]
+red     =   re [red]
+orange  =   or [orange]
+yellow  =   ye [yellow]
+green   =   gr [green]
+blue    =   b  [blue]  B ONLY !!!!!
+violet  =   vi [violet]
+grey    =   gr [grey]
+white   =   wh [white]
+gold    =   go [gold]
+silver  =   si [silver]
+none    =   no [none]

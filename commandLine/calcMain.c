@@ -128,6 +128,7 @@ int main(int argc, char **argv){
     baseResistance(arg);     
     fprintf (stderr ,"I'm entering beautifulPrinting\n");
     beautiFulPrinting(arg);
+    fprintf (stderr ,"I'm leaving beautifulPrinting\n");
     free (arg);
 
     return 0;

@@ -22,7 +22,7 @@ char * colorIntToColorString(int arg){
     else if (arg ==3) return "or";  //orange
     else if (arg ==4) return "ye";  //yellow
     else if (arg ==5) return "gr";  //green
-    else if (arg ==6) return "b";  //blue
+    else if (arg ==6) return "bb";  //blue
     else if (arg ==7) return "vi";  //violet
     else if (arg ==8) return "gr";  //grey
     else if (arg ==9) return "wh";  //white
@@ -34,50 +34,80 @@ char * colorIntToColorString(int arg){
 
 
 void beautiFulPrinting(struct Resistor *arg){
-//#ifdef DEBUG
-    printf("I'm in beautifulPrinting\n");
-//#endif
+    //#ifdef DEBUG
+    printf("##DEBUG I'm in beautifulPrinting\n");
+    //#endif
     FILE *in;
     in = fopen ("printString","r");
-        if (in == NULL){
-            fprintf(stderr, "Sorry guy something happend to printString file :(!!\nI cannot print resistor");
-            return;
-        }
+    if (in == NULL){
+        fprintf(stderr, "Sorry guy something happend to printString file :(!!\nI cannot print resistor");
+        return;
+    }
     int howMany = arg->howMany;
 
     char *first,*second,*third,*fourth,*fifth,*sixth;
 
+    printf("##DEBUG %d\n",arg->howMany);
 
-    if (howMany == 3){
+    if (howMany > 2){
         first = colorIntToColorString(stringToBase2( arg->first));
         second = colorIntToColorString(stringToBase2 (arg->second));
         fourth = colorIntToColorString(stringToBase2 (arg->fourth));
-        third =" ";
-        fourth = " ";
-        fifth = " ";
-        sixth = " ";  
-    } else if (howMany > 3)
-        third = colorIntToColorString(stringToBase2 (arg->third));
-      else if (howMany > 4)
+        third ="  ";
+        fifth = "  ";
+        sixth = "  ";  
+    } if (howMany > 3)
+    third = colorIntToColorString(stringToBase2 (arg->third));
+    if (howMany > 4)
         fifth = colorIntToColorString(stringToBase2 (arg->fifth));
-      else if (howMany > 5)
+    if (howMany > 5)
         sixth = colorIntToColorString(stringToBase2 (arg->sixth));
+
+
     /* Here goes printing*/
-    size_t *len; 
+    size_t len; 
     char read; 
     char *input = NULL;
-    while ((read = getline(&input, len, in)) != -1) {
-            printf("Retrieved line of length %s :\n", &read);
-                printf("%s", input);
+    while ((read = getline(&input, &len, in)) != -1) {
+        // printf("Retrieved line of length %s :\n", &read);
+        int i; 
+        for ( i = 0 ; i < (int)len;i++){
+
+            if(input [i] == '1'){
+                input[i]=first[0];
+                ++i;
+                input[i]=first[1];
+            }else if(input [i] == '2'){
+                input[i]=second[0];
+                ++i;
+                input[i]=second[1];
+            }else if(input [i] == '3'){
+                input[i]=third[0];
+                ++i;
+                input[i]=third[1];
+            }else if(input [i] == '4'){
+                input[i]=fourth[0];
+                ++i;
+                input[i]=fourth[1];
+            }else if(input [i] == '5'){
+                input[i]=fifth[0];
+                ++i;
+                input[i]=fifth[1];
+            }else if(input [i] == '6'){
+                input[i]=sixth[0];
+                ++i;
+                input[i]=sixth[1];
+            }
+
+
+
+        }
+        printf("%s", input);
     }
+    /* Cleaning*/
 
 
-    /*here goes Summary*/
+    close(in);
 
-    if (input)
-        free(input);
-    fclose (in);
-    if (in)
-        free (in);
 }
 

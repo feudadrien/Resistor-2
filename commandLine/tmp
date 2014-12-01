@@ -1,0 +1,32 @@
+In file included from calcMain.c:5:0:
+calcPrint.c: In function ‘stringToBase2’:
+calcPrint.c:13:25: error: ‘Colors’ undeclared (first use in this function)
+         if( strcmp (arg,Colors[i]) == 0 || strcmp (arg,Colors[i+13]) == 0 )
+                         ^
+calcPrint.c:13:25: note: each undeclared identifier is reported only once for each function it appears in
+calcPrint.c: In function ‘beautiFulPrinting’:
+calcPrint.c:41:9: error: expected ‘;’ before ‘if’
+         if (in == NULL){
+         ^
+calcPrint.c:50:9: error: ‘howMany’ undeclared (first use in this function)
+     if (howMany =3){
+         ^
+calcPrint.c:47:48: warning: variable ‘sixth’ set but not used [-Wunused-but-set-variable]
+     char *first,*second,*third,*fourth,*fifth,*sixth;
+                                                ^
+calcPrint.c:47:41: warning: variable ‘fifth’ set but not used [-Wunused-but-set-variable]
+     char *first,*second,*third,*fourth,*fifth,*sixth;
+                                         ^
+calcPrint.c:47:33: warning: variable ‘fourth’ set but not used [-Wunused-but-set-variable]
+     char *first,*second,*third,*fourth,*fifth,*sixth;
+                                 ^
+calcPrint.c:47:26: warning: variable ‘third’ set but not used [-Wunused-but-set-variable]
+     char *first,*second,*third,*fourth,*fifth,*sixth;
+                          ^
+calcPrint.c:47:18: warning: variable ‘second’ set but not used [-Wunused-but-set-variable]
+     char *first,*second,*third,*fourth,*fifth,*sixth;
+                  ^
+calcPrint.c:47:11: warning: variable ‘first’ set but not used [-Wunused-but-set-variable]
+     char *first,*second,*third,*fourth,*fifth,*sixth;
+           ^
+make: *** [calc] Error 1

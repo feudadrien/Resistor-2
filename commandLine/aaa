@@ -1,2 +1,0 @@
-static char  *Colors[] = {"black","brown","red","orange","yellow","green","blue","violet","grey","white","gold","silver","none",
-    "bl","br","re","or","ye","gr","b","vi","gr","wh","go","si","no"};

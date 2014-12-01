@@ -2,10 +2,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "resistor.h"
+#include "calcPrint.c"
 
-static char  *Colors[] = {"black","brown","red","orange","yellow","green","blue","violet","grey","white","gold","silver","none",
+
+
+char  *Colors[] = {"black","brown","red","orange","yellow","green","blue","violet","grey","white","gold","silver","none",
     "bl","br","re","or","ye","gr","b","vi","gr","wh","go","si","no"};
-static int COLORS_NUMBER = 13 ;
 
 /* This function changes the string to number (figure) 2 or 3
  * first arguments are base which will be multiplified 
@@ -123,7 +125,9 @@ int main(int argc, char **argv){
     }
 
     resistance(arg);
-    baseResistance(arg);      
+    baseResistance(arg);     
+    fprintf (stderr ,"I'm entering beautifulPrinting\n");
+    beautiFulPrinting(arg);
     free (arg);
 
     return 0;

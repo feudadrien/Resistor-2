@@ -1,13 +1,11 @@
 #include <stdio.h>
-#include <resistor.h>
 /* This file will make printing 
  * Firstly I wanted colors in terminal, but it's quite complicated
  * and not all colors are easly avaiable*/
 
-static char  *Colors[] = {"black","brown","red","orange","yellow","green","blue","violet","grey","white","gold","silver","none",
-    "bl","br","re","or","ye","gr","b","vi","gr","wh","go","si","no"};
+extern char  *Colors[]; 
 
-long long stringToBase(char *arg){
+int stringToBase2(char *arg){
     int i;
     for (i = 0; i < 13; ++i){
         if( strcmp (arg,Colors[i]) == 0 || strcmp (arg,Colors[i+13]) == 0 )
@@ -35,18 +33,51 @@ char * colorIntToColorString(int arg){
 }
 
 
-void beautiFulPrinting(struct resistor *arg){
+void beautiFulPrinting(struct Resistor *arg){
+//#ifdef DEBUG
+    printf("I'm in beautifulPrinting\n");
+//#endif
     FILE *in;
-    in = fopen ("printString","r")
+    in = fopen ("printString","r");
+        if (in == NULL){
+            fprintf(stderr, "Sorry guy something happend to printString file :(!!\nI cannot print resistor");
+            return;
+        }
+    int howMany = arg->howMany;
 
-        int howMany = arg->howMany;
+    char *first,*second,*third,*fourth,*fifth,*sixth;
+
+
     if (howMany == 3){
-         
+        first = colorIntToColorString(stringToBase2( arg->first));
+        second = colorIntToColorString(stringToBase2 (arg->second));
+        fourth = colorIntToColorString(stringToBase2 (arg->fourth));
+        third =" ";
+        fourth = " ";
+        fifth = " ";
+        sixth = " ";  
+    } else if (howMany > 3)
+        third = colorIntToColorString(stringToBase2 (arg->third));
+      else if (howMany > 4)
+        fifth = colorIntToColorString(stringToBase2 (arg->fifth));
+      else if (howMany > 5)
+        sixth = colorIntToColorString(stringToBase2 (arg->sixth));
+    /* Here goes printing*/
+    size_t *len; 
+    char read; 
+    char *input = NULL;
+    while ((read = getline(&input, len, in)) != -1) {
+            printf("Retrieved line of length %s :\n", &read);
+                printf("%s", input);
     }
 
 
+    /*here goes Summary*/
 
-
+    if (input)
+        free(input);
     fclose (in);
+    if (in)
+        free (in);
 }
 

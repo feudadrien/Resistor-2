@@ -34,9 +34,6 @@ char * colorIntToColorString(int arg){
 
 
 void beautiFulPrinting(struct Resistor *arg){
-    //#ifdef DEBUG
-    printf("##DEBUG I'm in beautifulPrinting\n");
-    //#endif
     FILE *in;
     in = fopen ("printString","r");
     if (in == NULL){
@@ -46,9 +43,9 @@ void beautiFulPrinting(struct Resistor *arg){
     int howMany = arg->howMany;
 
     char *first,*second,*third,*fourth,*fifth,*sixth;
-
+#ifdef Debug
     printf("##DEBUG %d\n",arg->howMany);
-
+#endif
     if (howMany > 2){
         first = colorIntToColorString(stringToBase2( arg->first));
         second = colorIntToColorString(stringToBase2 (arg->second));

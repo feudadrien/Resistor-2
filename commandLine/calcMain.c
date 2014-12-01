@@ -1,9 +1,12 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <fcntl.h> // for open
+#include <unistd.h> // for close
+
 #include "resistor.h"
 #include "calcPrint.c"
-
+#include "calcHelp.c"
 
 
 char  *Colors[] = {"black","brown","red","orange","yellow","green","blue","violet","grey","white","gold","silver","none",
@@ -84,15 +87,22 @@ long long resistance (struct Resistor *resistor){
     return -1;
 }
 
-void additionalInfo(int argc, char ** argv){
-
-}
 int main(int argc, char **argv){
-    if (argc < 4 || argc > 8){
-        fprintf(stderr,"There is wrong number of arguments \n");    
+
+    fprintf(stderr,"##Debug I'm inside");
+    if (argc < 3 || argc > 7 ){
+        showHelp();
+        return -1;
+    } 
+     
+    fprintf(stderr,"##Debug I'm inside2");
+    if (isNumber(argv[1] ) == 0 ){
+        showHelp();
         return -1;
     }
+    fprintf(stderr,"##Debug I'm inside3");
     struct Resistor *arg  = malloc (sizeof(struct Resistor));
+    
     int howMany = atoi (argv[1]);
     if (howMany < 3 && howMany > 6){
         fprintf(stderr,"Wrong number of stripes \n ERROR see calc -usage");    
@@ -113,8 +123,7 @@ int main(int argc, char **argv){
             arg ->fourth = argv[5];
             arg ->fifth = argv [6];
 
-            arg -> howMany = 5;
-        }
+            arg -> howMany = 5; }
         else if ( howMany == 6){
             arg ->third = argv[4];
             arg ->fourth = argv[5];
@@ -126,9 +135,7 @@ int main(int argc, char **argv){
 
     resistance(arg);
     baseResistance(arg);     
-    fprintf (stderr ,"I'm entering beautifulPrinting\n");
     beautiFulPrinting(arg);
-    fprintf (stderr ,"I'm leaving beautifulPrinting\n");
     free (arg);
 
     return 0;

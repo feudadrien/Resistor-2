@@ -89,13 +89,10 @@ long long resistance (struct Resistor *resistor){
 
 int main(int argc, char **argv){
 
-    fprintf(stderr,"##Debug I'm inside");
     if (argc < 3 || argc > 7 ){
         showHelp();
         return -1;
     } 
-     
-    fprintf(stderr,"##Debug I'm inside2");
     if (isNumber(argv[1] ) == 0 ){
         showHelp();
         return -1;

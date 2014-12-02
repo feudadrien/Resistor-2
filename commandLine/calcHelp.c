@@ -18,7 +18,7 @@ int isNumber(char *arg){
 void showHelp( void ){
   FILE *in;
   
-  in = open ("helpString", "r");
+  in = fopen ("helpString", "r");
   if (in == NULL ){
     fprintf(stderr, "Sorry something happened to printHelp file:(\nI cannot print help");
     return;
@@ -30,4 +30,6 @@ void showHelp( void ){
     while ((read = getline(&input,&len,in)) != -1){
         printf ("%s",input);
     }
+
+  fclose (in);
 }

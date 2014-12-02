@@ -104,7 +104,7 @@ void beautiFulPrinting(struct Resistor *arg){
     /* Cleaning*/
 
 
-    close(in);
+    fclose(in);
 
 }
 

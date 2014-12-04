@@ -42,10 +42,10 @@ long long stringToBase(char *arg){
     }
 
     // IF GOLD OR SILVER
-        if( strcmp (arg,Colors[11]) == 0 || strcmp (arg,Colors[11+13]) == 0 )
-    return -1;
-        if( strcmp (arg,Colors[12]) == 0 || strcmp (arg,Colors[12+13]) == 0 )
-    return -2; 
+    if( strcmp (arg,Colors[11]) == 0 || strcmp (arg,Colors[11+13]) == 0 )
+        return -1;
+    if( strcmp (arg,Colors[12]) == 0 || strcmp (arg,Colors[12+13]) == 0 )
+        return -2; 
     // IF nothing suits there is serious mistake  
     return -3;
 }
@@ -55,18 +55,18 @@ long long baseResistance(struct Resistor *resistor){
     long long base = stringToBase(resistor->fourth);
     if (base ==-3){
         fprintf(stderr, "SORRY something is bad with multiplekser !!! I quit\n");
-       exit(-1);
+        exit(-1);
     }
     if (base >= -3){
-           resistor->base = base;
-           if (base > 0)
-               resistor -> resistanceRounded = (double)base * (double)resistor->baseResistance;          
-           else if (base == -2)
-                resistor -> resistanceRounded = (double)base * (double)0.01;
-           else
-                resistor -> resistanceRounded = (double)base * (double)0.1;
-       }
-       return base; 
+        resistor->base = base;
+        if (base > 0)
+            resistor -> resistanceRounded = (double)base * (double)resistor->baseResistance;          
+        else if (base == -2)
+            resistor -> resistanceRounded = (double)base * (double)0.01;
+        else
+            resistor -> resistanceRounded = (double)base * (double)0.1;
+    }
+    return base; 
 }
 
 long long resistance (struct Resistor *resistor){
@@ -74,7 +74,7 @@ long long resistance (struct Resistor *resistor){
     if (resistor->howMany <= 4){
         base += (stringToFigure(resistor->first)*10)+(stringToFigure(resistor->second));
         resistor->baseResistance = base; 
-    
+
 
         return base;
     }
@@ -89,23 +89,30 @@ long long resistance (struct Resistor *resistor){
 
 int main(int argc, char **argv){
 
-    if (argc < 3 || argc > 7 ){
+    if (argc < 3 || argc > 8 ){
+        fprintf(stderr,"Wrong number of args\n");
         showHelp();
         return -1;
     } 
     if (isNumber(argv[1] ) == 0 ){
+        fprintf(stderr,"The first argument have to be number [3-6]\n");
         showHelp();
         return -1;
     }
-    fprintf(stderr,"##Debug I'm inside3");
-    struct Resistor *arg  = malloc (sizeof(struct Resistor));
-    
+
     int howMany = atoi (argv[1]);
     if (howMany < 3 && howMany > 6){
         fprintf(stderr,"Wrong number of stripes \n ERROR see calc -usage");    
         return -1;
-    }
-    else{
+        /** Check if howMany and real arguments number matches*/
+    }else if (howMany -argc + 2 != 0){
+        fprintf(stderr,"ERROR: \n ERROR see calc -usage");    
+        return -1;
+    } 
+    struct Resistor *arg  = malloc (sizeof(struct Resistor));
+
+
+    if (arg !=NULL){
         arg ->first = argv[2];
         arg ->second = argv[3];
         arg ->fourth = argv[4];

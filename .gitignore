@@ -1,0 +1,9 @@
+#ALL swp files
+*.swp
+
+#All class file
+*.class
+
+
+#usefull Staff directory
+*/usefullStaff/*

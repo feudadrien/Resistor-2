@@ -11,5 +11,5 @@ struct Resistor{
     double resistanceRounded;
     int baseResistance;
     long long base; // if base is 0.1(-1) or 0.01(-2) 
-    char *MultiPlekser;
+    char *multi;
 };

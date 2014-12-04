@@ -9,9 +9,11 @@
 int isNumber(char *arg){
    int i = 0;
    while (arg [i] != '\0' ){
-    if (arg[i]>'0' || arg[i]<'9')
-        return 0;    
+    if (arg[i]<'0' || arg[i]>'9')
+        return 0; 
+        i++;   
    }
+   //String has number char only
     return 1;
 }
 

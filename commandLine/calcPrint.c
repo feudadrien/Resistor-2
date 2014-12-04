@@ -153,8 +153,9 @@ void beautiFulPrinting(struct Resistor *arg){
         }
         printf("%s", input);
     }
+    free (input);
     /* Cleaning*/
-
+    //free(first);free(second);free(third);free(fourth);free(fifth);free(sixth);
 
     fclose(in);
 

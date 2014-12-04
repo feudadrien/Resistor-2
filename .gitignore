@@ -1,6 +1,7 @@
 #ALL swp files
 *.swp
-
+#All binary files
+*.out
 #All class file
 *.class
 

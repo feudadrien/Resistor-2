@@ -50,6 +50,37 @@ char *colorToTolerance(int arg){
     return NULL; 
 }
 
+char *colorToCoeffcient(int arg){
+
+
+red – 50 ppm/ºC
+orange – 15 ppm/ºC
+yellow – 25 ppm/ºC
+blue – 10 ppm/ºC
+violet – 5 ppm/ºC
+
+
+
+    if (arg==0) return "bl";        //black
+    else if (arg ==1) return "100 ppm";  //brown
+    else if (arg ==2) return "50 ppm";  //red
+    else if (arg ==3) return "15 ppm";  //orange
+    else if (arg ==4) return "25 ppm";  //yellow
+    else if (arg ==5) return "gr";  //green
+    else if (arg ==6) return "10";  //blue
+    else if (arg ==7) return "vi";  //violet
+    else if (arg ==8) return "gr";  //grey
+    else if (arg ==9) return "wh";  //white
+    else if (arg ==10) return "go"; //gold 
+    else if (arg ==11) return "si"; //silver
+    else if (arg ==12) return "no"; //none
+    else return "FU"; // FU -eq FuckYou there is no such color :D
+
+
+
+}
+
+
 char *colorIntToColorString(int arg){
     if (arg==0) return "bl";        //black
     else if (arg ==1) return "br";  //brown
@@ -74,13 +105,16 @@ void summaryPrint(struct Resistor *arg){
     int baseResistance; 
     if (howMany > 2){
         baseResistance =  arg->baseResistance;
+        multiplier = colorToMulti(stringToBase2(arg->fourth));
+        printf("Resistance is %d * %s \n",baseResistance,multiplier);     
+    } if (howMany > 4){
+        tolerance = colorToTolerance(stringToBase2(arg->fifth));
+        printf("Tolerance is %s\n");
+    }
+    if (howMany > 5){
         
-    } if (howMany > 3)
-    ;
-    if (howMany > 4)
-    ; 
-    if (howMany > 5)
-    ;
+    }
+    
 
 }
 
@@ -153,9 +187,8 @@ void beautiFulPrinting(struct Resistor *arg){
         }
         printf("%s", input);
     }
-    free (input);
     /* Cleaning*/
-    //free(first);free(second);free(third);free(fourth);free(fifth);free(sixth);
+    free (input);
 
     fclose(in);
 

@@ -23,12 +23,9 @@ char *colorToMulti(int arg){
     else if (arg ==5) return "100K OHM";                    //green
     else if (arg ==6) return "1M OHM";                      //blue
     else if (arg ==7) return "10M OHM";                     //violet
-    else if (arg ==8) return "THERE IS NO SUCH MULTIPLER";  //grey
-    else if (arg ==9) return "THERE IS NO SUCH MULTIPLER";  //white
     else if (arg ==10) return "0.1 OHM";                    //gold 
     else if (arg ==11) return "0.01 OHM";                   //silver
-    else if (arg ==12) return "no";                         //none
-    else return "FU";   // FU -eq FuckYou there is no such color ;v 
+    else return "ERR no such multiplier";   // FU -eq FuckYou there is no such color ;v 
     return NULL; 
 }
 
@@ -36,47 +33,26 @@ char *colorToTolerance(int arg){
     if (arg==0) return "(+/-)1 %";                          //black
     else if (arg ==1) return "(+/-)1 %";                    //brown
     else if (arg ==2) return "(+/-)1 %";                    //red
-    else if (arg ==3) return "THERE IS NO SUCH TOLERANCE";  //orange
-    else if (arg ==4) return "THERE IS NO SUCH TOLERANCE";  //yellow
     else if (arg ==5) return "(+/-)0.5 %";                  //green
     else if (arg ==6) return "(+/-)0.25 %";                 //blue
     else if (arg ==7) return "(+/-)0.10 %";                 //violet
     else if (arg ==8) return "(+/-)0.05 %";                 //grey
-    else if (arg ==9) return "THERE IS NO SUCH TOLERANCE";  //white
     else if (arg ==10) return "(+/-)5 %";                   //gold 
     else if (arg ==11) return "(+/-)10 %";                  //silver
-    else if (arg ==12) return "no";                         //none
-    else return "FU";   // FU -eq FuckYou there is no such color ;v 
+    else return "ERR no such tolerance";   // FU -eq FuckYou there is no such color ;v 
     return NULL; 
 }
 
 char *colorToCoeffcient(int arg){
-
-
-red – 50 ppm/ºC
-orange – 15 ppm/ºC
-yellow – 25 ppm/ºC
-blue – 10 ppm/ºC
-violet – 5 ppm/ºC
-
-
 
     if (arg==0) return "bl";        //black
     else if (arg ==1) return "100 ppm";  //brown
     else if (arg ==2) return "50 ppm";  //red
     else if (arg ==3) return "15 ppm";  //orange
     else if (arg ==4) return "25 ppm";  //yellow
-    else if (arg ==5) return "gr";  //green
-    else if (arg ==6) return "10";  //blue
-    else if (arg ==7) return "vi";  //violet
-    else if (arg ==8) return "gr";  //grey
-    else if (arg ==9) return "wh";  //white
-    else if (arg ==10) return "go"; //gold 
-    else if (arg ==11) return "si"; //silver
-    else if (arg ==12) return "no"; //none
-    else return "FU"; // FU -eq FuckYou there is no such color :D
-
-
+    else if (arg ==6) return "10 ppm";  //blue
+    else if (arg ==7) return "5 ppm";  //violet
+    else return "ERR no such Coefficient"; // FU -eq FuckYou there is no such color :D
 
 }
 
@@ -109,10 +85,11 @@ void summaryPrint(struct Resistor *arg){
         printf("Resistance is %d * %s \n",baseResistance,multiplier);     
     } if (howMany > 4){
         tolerance = colorToTolerance(stringToBase2(arg->fifth));
-        printf("Tolerance is %s\n");
+        printf("Tolerance is %s\n",tolerance);
     }
     if (howMany > 5){
-        
+        somethingWhatIdontRemeber =  colorToCoeffcient(stringToBase2(arg->sixth));
+        printf ("Coefficient is %s\n",somethingWhatIdontRemeber);       
     }
     
 

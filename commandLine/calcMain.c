@@ -71,11 +71,9 @@ long long baseResistance(struct Resistor *resistor){
 
 long long resistance (struct Resistor *resistor){
     long long base = 0; 
-    if (resistor->howMany <= 4){
+    if (resistor->howMany == 3){
         base += (stringToFigure(resistor->first)*10)+(stringToFigure(resistor->second));
         resistor->baseResistance = base; 
-
-
         return base;
     }
     else {
@@ -140,6 +138,8 @@ int main(int argc, char **argv){
     resistance(arg);
     baseResistance(arg);     
     beautiFulPrinting(arg);
+    summaryPrint(arg);
+
     free (arg);
 
     return 0;

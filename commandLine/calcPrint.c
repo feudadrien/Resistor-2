@@ -44,9 +44,7 @@ char *colorToTolerance(int arg){
 }
 
 char *colorToCoeffcient(int arg){
-
-    if (arg==0) return "bl";        //black
-    else if (arg ==1) return "100 ppm";  //brown
+    if (arg ==1) return "100 ppm";  //brown
     else if (arg ==2) return "50 ppm";  //red
     else if (arg ==3) return "15 ppm";  //orange
     else if (arg ==4) return "25 ppm";  //yellow

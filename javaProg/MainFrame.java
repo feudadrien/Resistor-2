@@ -4,7 +4,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -15,11 +14,11 @@ public class MainFrame extends JFrame {
 	private final JButton exitJButton = new JButton();
 	private final JButton calculateJButton = new JButton();
 	private final JButton infoJButton = new JButton();
-	//private final JLabel COPYLEFT_STRING = new JLabel();
 
-	private void initUI() {
+	// private final JLabel COPYLEFT_STRING = new JLabel();
+	private void initButtons() {
 		exitJButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
@@ -27,28 +26,34 @@ public class MainFrame extends JFrame {
 		});
 		exitJButton.setText("EXIT");
 		calculateJButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				JOptionPane.showMessageDialog(new JPanel(), "NOT IMPLEMENT YET");
-				
+				JOptionPane
+						.showMessageDialog(new JPanel(), "NOT IMPLEMENT YET");
+
 			}
 		});
 		calculateJButton.setText("CALCULATE");
 		infoJButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(new JPanel(), COPY_LEFT_STRING);
 			}
 		});
 		infoJButton.setText("Program info");
-		JPanel pane = new JPanel(); 
+	}
+
+	private void initUI() {
+		setResizable(false);
+		initButtons();
+		JPanel pane = new JPanel();
 		pane.add(calculateJButton);
 		pane.add(infoJButton);
 		pane.add(exitJButton);
-		add (pane);
+		add(pane);
 	}
 
 	MainFrame() {
@@ -65,8 +70,7 @@ public class MainFrame extends JFrame {
 
 	public static void main(String[] args) {
 
-		
-		// Make 
+		// Make
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -78,7 +82,6 @@ public class MainFrame extends JFrame {
 
 		});
 
-		
 	}
 
 }

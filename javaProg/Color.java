@@ -5,13 +5,22 @@
  * Maybe it would be better to do colors with strings in another class
  * And then make Color chooser
  */
-public class Color {
+public final class Color {
 	public final static String[] RESISTOR_BAND_COLORS = { "black", "brown",
 			"red", "orange", "yellow", "green", "blue", "violet", "grey",
 			"white", "gold", "silver" };
 
-
-
+	public static boolean isValidResistorColor(String arg){
+		if (arg.equals("none"))
+			return true;
+		for (String i:RESISTOR_BAND_COLORS){
+			if (arg.equals(i)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 
 	
 	public static String []allColors(){

@@ -1,3 +1,12 @@
+/**
+ * 
+ * @author Alex
+ * This class is responsible for JList
+ * It initialize JList with right arguments for each list 
+ */
+
+
+
 import javax.swing.JList;
 
 
@@ -9,6 +18,11 @@ public class ColorChooser {
 	public final static int MODE_COEFFICIENT = 3;
 	private String[] myColors = null;
 	JList<String> colorList  = new JList<String>();
+	
+	JList<String>getList(){
+		return colorList;
+	}
+	
 	ColorChooser(int MODE) {
 
 		if (MODE == MODE_ALL) {

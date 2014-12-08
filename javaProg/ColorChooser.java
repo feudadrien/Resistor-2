@@ -7,7 +7,7 @@
 
 
 
-import javax.swing.JList;
+import javax.swing.JComboBox;
 
 
 
@@ -17,9 +17,9 @@ public class ColorChooser {
 	public final static int MODE_MULTIPLIER = 2;
 	public final static int MODE_COEFFICIENT = 3;
 	private String[] myColors = null;
-	JList<String> colorList  = new JList<String>();
+	JComboBox<String> colorList  = new JComboBox<>();
 	
-	JList<String>getList(){
+	JComboBox<String>getList(){
 		return colorList;
 	}
 	
@@ -43,6 +43,6 @@ public class ColorChooser {
 		if (MODE == MODE_COEFFICIENT) {
 			myColors=Color.coefficientColors();
 		}
-		colorList = new JList<String> (myColors);
+		colorList = new JComboBox<String> (myColors);
 	}
 }

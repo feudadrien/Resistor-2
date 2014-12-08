@@ -15,7 +15,11 @@ public class MainFrame extends JFrame {
 	private final JButton calculateJButton = new JButton();
 	private final JButton infoJButton = new JButton();
 	private ColorChooser band1, band2, band3, band4, band5, band6;
-
+	private ResistorDrawer drawer = new ResistorDrawer();
+	private void initDrawer(JPanel jpane){
+		jpane.add(drawer);
+	}
+	
 	// private final JLabel COPYLEFT_STRING = new JLabel();
 	private void initButtons() {
 		exitJButton.addActionListener(new ActionListener() {
@@ -48,6 +52,7 @@ public class MainFrame extends JFrame {
 
 
 	private void initBands(JPanel bandPane){
+		//TODO Make Listeners
 		bandPane.add(band1.getList());
 		bandPane.add(band2.getList());
 		bandPane.add(band3.getList());
@@ -58,15 +63,17 @@ public class MainFrame extends JFrame {
 	private void initUI() {
 		setResizable(false);
 		JPanel bandPanel = new JPanel();
-		initButtons();
-		initBands(bandPanel);
-		
 		JPanel pane = new JPanel();
+
+		initDrawer(pane);
+		initButtons();
+		initBands(pane);
+		
 		pane.add(calculateJButton);
 		pane.add(infoJButton);
 		pane.add(exitJButton);
 		add(pane);
-		add(bandPanel);
+		//add(bandPanel);
 	}
 
 	MainFrame() {
@@ -74,6 +81,7 @@ public class MainFrame extends JFrame {
 		setSize(500, 500);
 		setTitle(TITLE_STRING);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setResizable(false);
 		band1= new ColorChooser(ColorChooser.MODE_ALL);
 		band2= new ColorChooser(ColorChooser.MODE_ALL);
 		band3= new ColorChooser(ColorChooser.MODE_ALL);

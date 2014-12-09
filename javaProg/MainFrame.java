@@ -16,10 +16,11 @@ public class MainFrame extends JFrame {
 	private final JButton infoJButton = new JButton();
 	private ColorChooser band1, band2, band3, band4, band5, band6;
 	private ResistorDrawer drawer = new ResistorDrawer();
-	private void initDrawer(JPanel jpane){
+
+	private void initDrawer(JPanel jpane) {
 		jpane.add(drawer);
 	}
-	
+
 	// private final JLabel COPYLEFT_STRING = new JLabel();
 	private void initButtons() {
 		exitJButton.addActionListener(new ActionListener() {
@@ -50,9 +51,28 @@ public class MainFrame extends JFrame {
 		infoJButton.setText("Program info");
 	}
 
+	private void bandChange() {
+		String b1 = (String) band1.getList().getSelectedItem();
+		String b2 = (String) band2.getList().getSelectedItem();
+		String b3 = (String) band3.getList().getSelectedItem();
+		String b4 = (String) band4.getList().getSelectedItem();
+		String b5 = (String) band5.getList().getSelectedItem();
+		String b6 = (String) band6.getList().getSelectedItem();
+		drawer.setResistor(Color.colorToInt(b1), Color.colorToInt(b2), Color.colorToInt(b3), Color.colorToInt(b4),
+				Color.colorToInt(b5), Color.colorToInt(b6));
+		drawer.paint(getGraphics());
+	}
 
-	private void initBands(JPanel bandPane){
-		//TODO Make Listeners
+	private void initBands(JPanel bandPane) {
+		// TODO Make Listeners
+		band1.getList().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Its working
+				bandChange();
+				
+			}
+		});
 		bandPane.add(band1.getList());
 		bandPane.add(band2.getList());
 		bandPane.add(band3.getList());
@@ -60,6 +80,7 @@ public class MainFrame extends JFrame {
 		bandPane.add(band5.getList());
 		bandPane.add(band6.getList());
 	}
+
 	private void initUI() {
 		setResizable(false);
 		JPanel bandPanel = new JPanel();
@@ -68,12 +89,12 @@ public class MainFrame extends JFrame {
 		initDrawer(pane);
 		initButtons();
 		initBands(pane);
-		
+
 		pane.add(calculateJButton);
 		pane.add(infoJButton);
 		pane.add(exitJButton);
 		add(pane);
-		//add(bandPanel);
+		// add(bandPanel);
 	}
 
 	MainFrame() {
@@ -82,12 +103,12 @@ public class MainFrame extends JFrame {
 		setTitle(TITLE_STRING);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
-		band1= new ColorChooser(ColorChooser.MODE_ALL);
-		band2= new ColorChooser(ColorChooser.MODE_ALL);
-		band3= new ColorChooser(ColorChooser.MODE_ALL);
-		band4= new ColorChooser(ColorChooser.MODE_MULTIPLIER);
-		band5= new ColorChooser(ColorChooser.MODE_TOLERANCE);
-		band6= new ColorChooser(ColorChooser.MODE_COEFFICIENT);
+		band1 = new ColorChooser(ColorChooser.MODE_ALL);
+		band2 = new ColorChooser(ColorChooser.MODE_ALL);
+		band3 = new ColorChooser(ColorChooser.MODE_ALL);
+		band4 = new ColorChooser(ColorChooser.MODE_MULTIPLIER);
+		band5 = new ColorChooser(ColorChooser.MODE_TOLERANCE);
+		band6 = new ColorChooser(ColorChooser.MODE_COEFFICIENT);
 	}
 
 	/**

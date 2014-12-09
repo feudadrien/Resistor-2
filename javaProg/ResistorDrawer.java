@@ -3,6 +3,9 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Graphics2D;
+
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 public class ResistorDrawer extends Canvas{
 
 	private final Color background = new Color(240,230,140);
@@ -38,13 +41,13 @@ public class ResistorDrawer extends Canvas{
 			return background;
 	}
 	private void initColor(){
-		colorSixth=colorFifth=colorSecond=colorThird=colorFourth=colorFirst=background;
+		colorSixth=colorFifth=colorSecond=colorThird=colorFourth=colorFirst=brown;
 	}
 	private void initInts(){
 		first=second=third=fourth=fifth=-1;
 	}
 	public ResistorDrawer() {
-		setPreferredSize(new Dimension(480, 400));
+		setPreferredSize(new Dimension(500, 300));
 		initColor();
 		initInts();
 	}
@@ -56,18 +59,60 @@ public class ResistorDrawer extends Canvas{
 		this.fourth = fourth;
 		this.fifth = fifth;
 		this.sixth = sixth;
+
 	}
 	
 		
+	private void makeColorsfromInt(){
+		colorFirst = intToColor(first);
+		colorSecond = intToColor(second);
+		colorThird = intToColor(third);
+		colorFourth = intToColor(fourth);
+		colorFifth = intToColor(fifth);
+		colorSixth = intToColor(sixth);
+	}
+	private void paintBand(Graphics graphics){
 		
-		
+		Graphics2D g2 = (Graphics2D)graphics;
+		//First
+		g2.setPaint(colorFirst);
+		g2.fillRect(120,90, 30, 120);
+		//Second
+		g2.setPaint(colorSecond);
+		g2.fillRect(165,110, 20, 80);
+		//Third
+		g2.setPaint(colorThird);
+		g2.fillRect(195,110, 20, 80);
+		//Fourth
+		g2.setPaint(colorFourth);
+		g2.fillRect(225,110, 20, 80);
+		//Fifth
+		g2.setPaint(colorFifth);
+		g2.fillRect(255,110, 20, 80);
+		//
+		g2.setPaint(colorSixth);
+		g2.fillRect(350,90, 30, 120);
+	}
 	
 	private void paintResistor(Graphics graphics){
 	
-		
+		/*TODO change, make a little project of projection*/
 		Graphics2D g2 = (Graphics2D)graphics;
+		g2.setPaint(Color.GRAY);
+		//Print legs
+		g2.fillRect(50, 140, 50, 20);
+		g2.fillRect(400, 140, 50, 20);
+		
+		//Printing Body |------|
 		g2.setPaint(background);
-		g2.fillRect(230, 140, 20, 20);
+		g2.fillRect(100,90, 60, 120);
+		g2.fillRect(340,90, 60, 120);
+		g2.fillRect(160, 110, 180, 80);
+		makeColorsfromInt();
+		paintBand(graphics);
+//		g2.setPaint(background);
+//		g2.fillRect(25, 80, 450, 90);//Whole
+//		g2.fillRect(25, 65, 50, 120);
 		/*Todo Painting
 		 * Project the resistor view
 		 */
@@ -75,10 +120,9 @@ public class ResistorDrawer extends Canvas{
 		
 	}
 	public void paint(Graphics graphics) {
+	
+		
 		paintResistor(graphics);
-		//	paintResistor(graphics);
-		
-		
 		
 	}
 

@@ -44,7 +44,7 @@ public class ResistorDrawer extends Canvas{
 		colorSixth=colorFifth=colorSecond=colorThird=colorFourth=colorFirst=brown;
 	}
 	private void initInts(){
-		first=second=third=fourth=fifth=-1;
+		first=second=third=fourth=fifth=1;
 	}
 	public ResistorDrawer() {
 		setPreferredSize(new Dimension(500, 300));
@@ -53,6 +53,7 @@ public class ResistorDrawer extends Canvas{
 	}
 	public void setResistor(int first,int second,int third, int fourth, int fifth,
 			int sixth){
+		System.out.println("Setting Resistors "+first + " " + second +" " + third + " "+fourth+" "+fifth + " " + sixth);
 		this.first = first;
 		this.second = second;
 		this.third = third;
@@ -72,6 +73,7 @@ public class ResistorDrawer extends Canvas{
 		colorSixth = intToColor(sixth);
 	}
 	private void paintBand(Graphics graphics){
+		System.out.println("ColorFirst "+colorFirst.toString()+" ColorFifth "+colorFifth.toString());
 		
 		Graphics2D g2 = (Graphics2D)graphics;
 		//First
@@ -98,6 +100,7 @@ public class ResistorDrawer extends Canvas{
 	
 		/*TODO change, make a little project of projection*/
 		Graphics2D g2 = (Graphics2D)graphics;
+		
 		g2.setPaint(Color.GRAY);
 		//Print legs
 		g2.fillRect(50, 140, 50, 20);
@@ -121,7 +124,7 @@ public class ResistorDrawer extends Canvas{
 	}
 	public void paint(Graphics graphics) {
 	
-		
+		System.out.println("I'm in paint");
 		paintResistor(graphics);
 		
 	}

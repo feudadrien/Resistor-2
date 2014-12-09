@@ -58,14 +58,55 @@ public class MainFrame extends JFrame {
 		String b4 = (String) band4.getList().getSelectedItem();
 		String b5 = (String) band5.getList().getSelectedItem();
 		String b6 = (String) band6.getList().getSelectedItem();
+		
 		drawer.setResistor(Color.colorToInt(b1), Color.colorToInt(b2), Color.colorToInt(b3), Color.colorToInt(b4),
 				Color.colorToInt(b5), Color.colorToInt(b6));
 		drawer.paint(getGraphics());
+		drawer.repaint();
 	}
 
 	private void initBands(JPanel bandPane) {
 		// TODO Make Listeners
 		band1.getList().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				bandChange();
+				
+			}
+		});
+		band2.getList().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Its working
+				bandChange();
+				
+			}
+		});
+		band3.getList().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Its working
+				bandChange();
+				
+			}
+		});
+		band4.getList().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Its working
+				bandChange();
+				
+			}
+		});
+		band5.getList().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Its working
+				bandChange();
+				
+			}
+		});
+		band6.getList().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//Its working

@@ -16,6 +16,8 @@ public class ColorChooser {
 	public final static int MODE_TOLERANCE = 1;
 	public final static int MODE_MULTIPLIER = 2;
 	public final static int MODE_COEFFICIENT = 3;
+	public final static int MODE_BASE = 4;
+	public final static int MODE_BASEANDNONE = 5;
 	private String[] myColors = null;
 	JComboBox<String> colorList  = new JComboBox<>();
 	
@@ -30,7 +32,7 @@ public class ColorChooser {
 			int index = 0;
 
 			for (String i : Color.RESISTOR_BAND_COLORS) {
-				myColors[index] = new String(i);// Deep copy ?? TODO CHECK
+				myColors[index] = new String(i);
 				index++;
 			}
 		}
@@ -42,6 +44,12 @@ public class ColorChooser {
 		}
 		if (MODE == MODE_COEFFICIENT) {
 			myColors=Color.coefficientColors();
+		}
+		if (MODE == MODE_BASE){
+			myColors=Color.baseColors();
+		}
+		if (MODE == MODE_BASEANDNONE){
+			myColors = Color.baseAndNoneColors();
 		}
 		colorList = new JComboBox<String> (myColors);
 	}

@@ -21,7 +21,7 @@ public class ResistorDrawer extends Canvas{
 	private final Color grey = Color.GRAY;
 	private final Color white = Color.WHITE; 
 	private final Color gold = new Color(218,165,32);
-	private final Color silver = new Color(218,165,32);
+	private final Color silver = new Color(192,192,192);
 	private int first,second,third,fourth,fifth,sixth;
 	private Color colorFirst,colorSecond,colorThird,colorFourth,colorFifth,colorSixth;
 	private Color intToColor(int arg){
@@ -31,9 +31,9 @@ public class ResistorDrawer extends Canvas{
 		if (arg==3) return orange;
 		if (arg==4) return yellow;
 		if (arg==5) return green;
-		if (arg==6) return violet;
-		if (arg==7) return grey;
-		if (arg==8) return white;
+		if (arg==6) return blue;
+		if (arg==7) return violet;
+		if (arg==8) return grey;
 		if (arg==9) return white;
 		if (arg==10) return gold;
 		if (arg==11) return silver;
@@ -41,7 +41,7 @@ public class ResistorDrawer extends Canvas{
 			return background;
 	}
 	private void initColor(){
-		colorSixth=colorFifth=colorSecond=colorThird=colorFourth=colorFirst=brown;
+		colorSixth=colorFifth=colorSecond=colorThird=colorFourth=colorFirst=black;
 	}
 	private void initInts(){
 		first=second=third=fourth=fifth=1;
@@ -53,7 +53,6 @@ public class ResistorDrawer extends Canvas{
 	}
 	public void setResistor(int first,int second,int third, int fourth, int fifth,
 			int sixth){
-		System.out.println("Setting Resistors "+first + " " + second +" " + third + " "+fourth+" "+fifth + " " + sixth);
 		this.first = first;
 		this.second = second;
 		this.third = third;
@@ -65,6 +64,7 @@ public class ResistorDrawer extends Canvas{
 	
 		
 	private void makeColorsfromInt(){
+		System.out.println("first is " + first);
 		colorFirst = intToColor(first);
 		colorSecond = intToColor(second);
 		colorThird = intToColor(third);
@@ -98,7 +98,6 @@ public class ResistorDrawer extends Canvas{
 	
 	private void paintResistor(Graphics graphics){
 	
-		/*TODO change, make a little project of projection*/
 		Graphics2D g2 = (Graphics2D)graphics;
 		
 		g2.setPaint(Color.GRAY);
@@ -113,18 +112,11 @@ public class ResistorDrawer extends Canvas{
 		g2.fillRect(160, 110, 180, 80);
 		makeColorsfromInt();
 		paintBand(graphics);
-//		g2.setPaint(background);
-//		g2.fillRect(25, 80, 450, 90);//Whole
-//		g2.fillRect(25, 65, 50, 120);
-		/*Todo Painting
-		 * Project the resistor view
-		 */
 		
 		
 	}
 	public void paint(Graphics graphics) {
 	
-		System.out.println("I'm in paint");
 		paintResistor(graphics);
 		
 	}

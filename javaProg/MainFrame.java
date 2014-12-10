@@ -1,3 +1,4 @@
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextPane;
 
 public class MainFrame extends JFrame {
 
@@ -16,7 +18,7 @@ public class MainFrame extends JFrame {
 	private final JButton infoJButton = new JButton();
 	private ColorChooser band1, band2, band3, band4, band5, band6;
 	private ResistorDrawer drawer = new ResistorDrawer();
-
+	private JTextPane text = new JTextPane ();
 	private void initDrawer(JPanel jpane) {
 		jpane.add(drawer);
 	}
@@ -35,9 +37,7 @@ public class MainFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JOptionPane.showMessageDialog(new JPanel(), "NOT IMPLEMENT YET");
-
+				setTextField();
 			}
 		});
 		calculateJButton.setText("CALCULATE");
@@ -50,7 +50,18 @@ public class MainFrame extends JFrame {
 		});
 		infoJButton.setText("Program info");
 	}
-
+	private void setTextField(){
+		Resistor res = new Resistor();
+		String b1 = (String) band1.getList().getSelectedItem();
+		String b2 = (String) band2.getList().getSelectedItem();
+		String b3 = (String) band3.getList().getSelectedItem();
+		String b4 = (String) band4.getList().getSelectedItem();
+		String b5 = (String) band5.getList().getSelectedItem();
+		String b6 = (String) band6.getList().getSelectedItem();
+		
+		res.setResistor(new String [] {b1,b2,b3,b4,b5,b6});
+		text.setText(res.getInformation());
+	}
 	private void bandChange() {
 		String b1 = (String) band1.getList().getSelectedItem();
 		String b2 = (String) band2.getList().getSelectedItem();
@@ -66,7 +77,6 @@ public class MainFrame extends JFrame {
 	}
 
 	private void initBands(JPanel bandPane) {
-		// TODO Make Listeners
 		band1.getList().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -126,7 +136,7 @@ public class MainFrame extends JFrame {
 		setResizable(false);
 		JPanel bandPanel = new JPanel();
 		JPanel pane = new JPanel();
-
+		text.setPreferredSize(new Dimension(400,100));
 		initDrawer(pane);
 		initButtons();
 		initBands(pane);
@@ -134,6 +144,7 @@ public class MainFrame extends JFrame {
 		pane.add(calculateJButton);
 		pane.add(infoJButton);
 		pane.add(exitJButton);
+		pane.add(text);
 		add(pane);
 		// add(bandPanel);
 	}
@@ -144,9 +155,9 @@ public class MainFrame extends JFrame {
 		setTitle(TITLE_STRING);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
-		band1 = new ColorChooser(ColorChooser.MODE_ALL);
-		band2 = new ColorChooser(ColorChooser.MODE_ALL);
-		band3 = new ColorChooser(ColorChooser.MODE_ALL);
+		band1 = new ColorChooser(ColorChooser.MODE_BASE);
+		band2 = new ColorChooser(ColorChooser.MODE_BASE);
+		band3 = new ColorChooser(ColorChooser.MODE_BASEANDNONE);
 		band4 = new ColorChooser(ColorChooser.MODE_MULTIPLIER);
 		band5 = new ColorChooser(ColorChooser.MODE_TOLERANCE);
 		band6 = new ColorChooser(ColorChooser.MODE_COEFFICIENT);

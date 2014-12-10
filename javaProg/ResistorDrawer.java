@@ -4,10 +4,14 @@ import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 public class ResistorDrawer extends Canvas{
-
+	/**
+	 * Serial UID not used ;), but without it Eclipse is angry and shows warnings ;)
+	 */
+	private static final long serialVersionUID = -1345674993210123690L;
+	/**
+	 * All colors needed in Project
+	 */
 	private final Color background = new Color(240,230,140);
 	private final Color black = Color.BLACK;
 	private final Color brown = new Color(139,69,19);
@@ -17,13 +21,18 @@ public class ResistorDrawer extends Canvas{
 	private final Color green = Color.GREEN; 
 	private final Color blue = Color.BLUE;
 	private final Color violet = new Color(148,0,211);
-	//Gray = grey I WAS affraid that I have mistake in whole project
 	private final Color grey = Color.GRAY;
 	private final Color white = Color.WHITE; 
 	private final Color gold = new Color(218,165,32);
 	private final Color silver = new Color(192,192,192);
+
+	/**
+	 * This looks awful TODO during next Code review make arrays  
+	 */
 	private int first,second,third,fourth,fifth,sixth;
 	private Color colorFirst,colorSecond,colorThird,colorFourth,colorFifth,colorSixth;
+	
+	
 	private Color intToColor(int arg){
 		if (arg==0) return black;
 		if (arg==1) return brown;
@@ -44,7 +53,8 @@ public class ResistorDrawer extends Canvas{
 		colorSixth=colorFifth=colorSecond=colorThird=colorFourth=colorFirst=black;
 	}
 	private void initInts(){
-		first=second=third=fourth=fifth=1;
+		first=second=third=fourth=0;
+		fifth=sixth=1;
 	}
 	public ResistorDrawer() {
 		setPreferredSize(new Dimension(500, 300));
@@ -91,7 +101,7 @@ public class ResistorDrawer extends Canvas{
 		//Fifth
 		g2.setPaint(colorFifth);
 		g2.fillRect(255,110, 20, 80);
-		//
+		//Sixth
 		g2.setPaint(colorSixth);
 		g2.fillRect(350,90, 30, 120);
 	}
@@ -101,7 +111,7 @@ public class ResistorDrawer extends Canvas{
 		Graphics2D g2 = (Graphics2D)graphics;
 		
 		g2.setPaint(Color.GRAY);
-		//Print legs
+		//Prints legs
 		g2.fillRect(50, 140, 50, 20);
 		g2.fillRect(400, 140, 50, 20);
 		
@@ -110,13 +120,14 @@ public class ResistorDrawer extends Canvas{
 		g2.fillRect(100,90, 60, 120);
 		g2.fillRect(340,90, 60, 120);
 		g2.fillRect(160, 110, 180, 80);
+		//Initialize colors for bands
 		makeColorsfromInt();
+		//Prints bands
 		paintBand(graphics);
 		
 		
 	}
 	public void paint(Graphics graphics) {
-	
 		paintResistor(graphics);
 		
 	}

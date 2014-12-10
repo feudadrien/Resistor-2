@@ -7,10 +7,6 @@ public class Resistor {
 	private String tolerance;
 	private String coefficient;
 
-	/*
-	 * If
-	 */
-
 	private void bandsToBase(String firstBand, String secondBand, String thirdBand) {
 		int tmp = 0;
 		if (!firstBand.equals("none")) {
@@ -29,7 +25,8 @@ public class Resistor {
 	}
 
 	/**
-	 * There is always multiplier band :)
+	 * @param band
+	 * set multiplier
 	 */
 	private void bandToMultiplier(String band) {
 		multiplier = Color.colorToMulti(Color.colorToInt(band));
@@ -41,7 +38,7 @@ public class Resistor {
 		else
 			tolerance = "";
 	}
-
+	
 	private void bandToCoefficient(String band) {
 		if (!band.equals("none"))
 			coefficient = Color.colorToCoeffcient(Color.colorToInt(band));
@@ -52,14 +49,13 @@ public class Resistor {
 	private void makeInfo() {
 		information = new String();
 		information += "Your Resistor Data:\n";
-		information += "Resistance = " + base + " " + multiplier + "\n";
+		information += "Resistance = " + base + " * " + multiplier + "\n";
 		if (!tolerance.equals(""))
 			information += "Tolerance = " + tolerance + "\n";
 		if (!coefficient.equals(""))
-			information += "Coefficient = " + tolerance  ;
-
+			information += "Coefficient = " + coefficient  ;
 	}
-
+	
 	public String getInformation() {
 		return information;
 	}
@@ -76,9 +72,6 @@ public class Resistor {
 			if (Color.isValidResistorColor(i) == false)
 				return false;
 		}
-		// Every thing seems to be fine;
-		// Because I made Colorchooser I assume that Multiplier won't have bad
-		// color :)
 
 		bandsToBase(arrayOfBands[0], arrayOfBands[1], arrayOfBands[2]);
 		bandToMultiplier(arrayOfBands[3]);

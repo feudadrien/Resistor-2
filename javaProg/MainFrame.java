@@ -5,25 +5,23 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 
 public class MainFrame extends JFrame {
-
 	private final String TITLE_STRING = "Resistor Calc";
-	private final String COPY_LEFT_STRING = "Made by Alex Baranowski, all right copyleft";
+	private final String COPY_LEFT_STRING = "Made by Alex Baranowski, all right copyleft. More Info\nhttps://github.com/AlexBaranowski/Resistor";
 	private final JButton exitJButton = new JButton();
 	private final JButton calculateJButton = new JButton();
 	private final JButton infoJButton = new JButton();
 	private ColorChooser band1, band2, band3, band4, band5, band6;
 	private ResistorDrawer drawer = new ResistorDrawer();
-	private JTextPane text = new JTextPane ();
+	private JTextPane text = new JTextPane();
+
 	private void initDrawer(JPanel jpane) {
 		jpane.add(drawer);
 	}
 
-	// private final JLabel COPYLEFT_STRING = new JLabel();
 	private void initButtons() {
 		exitJButton.addActionListener(new ActionListener() {
 
@@ -37,31 +35,36 @@ public class MainFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setTextField();
+				Resistor res = new Resistor();
+				String b1 = (String) band1.getList().getSelectedItem();
+				String b2 = (String) band2.getList().getSelectedItem();
+				String b3 = (String) band3.getList().getSelectedItem();
+				String b4 = (String) band4.getList().getSelectedItem();
+				String b5 = (String) band5.getList().getSelectedItem();
+				String b6 = (String) band6.getList().getSelectedItem();
+
+				res.setResistor(new String[] { b1, b2, b3, b4, b5, b6 });
+
+				setTextField(res.getInformation());
 			}
 		});
 		calculateJButton.setText("CALCULATE");
+		
+		
 		infoJButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(new JPanel(), COPY_LEFT_STRING);
+				setTextField(COPY_LEFT_STRING);
 			}
 		});
 		infoJButton.setText("Program info");
 	}
-	private void setTextField(){
-		Resistor res = new Resistor();
-		String b1 = (String) band1.getList().getSelectedItem();
-		String b2 = (String) band2.getList().getSelectedItem();
-		String b3 = (String) band3.getList().getSelectedItem();
-		String b4 = (String) band4.getList().getSelectedItem();
-		String b5 = (String) band5.getList().getSelectedItem();
-		String b6 = (String) band6.getList().getSelectedItem();
-		
-		res.setResistor(new String [] {b1,b2,b3,b4,b5,b6});
-		text.setText(res.getInformation());
+
+	private void setTextField(String textFieldOutput) {
+		text.setText(textFieldOutput);
 	}
+
 	private void bandChange() {
 		String b1 = (String) band1.getList().getSelectedItem();
 		String b2 = (String) band2.getList().getSelectedItem();
@@ -69,59 +72,55 @@ public class MainFrame extends JFrame {
 		String b4 = (String) band4.getList().getSelectedItem();
 		String b5 = (String) band5.getList().getSelectedItem();
 		String b6 = (String) band6.getList().getSelectedItem();
-		
+
 		drawer.setResistor(Color.colorToInt(b1), Color.colorToInt(b2), Color.colorToInt(b3), Color.colorToInt(b4),
 				Color.colorToInt(b5), Color.colorToInt(b6));
 		drawer.paint(getGraphics());
 		drawer.repaint();
 	}
 
+	/**
+	 * @param bandPane
+	 *            Method set listners on JLists (bands) then adds to bandPane
+	 */
 	private void initBands(JPanel bandPane) {
 		band1.getList().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				bandChange();
-				
+
 			}
 		});
 		band2.getList().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Its working
 				bandChange();
-				
 			}
 		});
 		band3.getList().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Its working
+				// Its working
 				bandChange();
-				
+
 			}
 		});
 		band4.getList().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Its working
 				bandChange();
-				
 			}
 		});
 		band5.getList().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Its working
 				bandChange();
-				
 			}
 		});
 		band6.getList().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Its working
 				bandChange();
-				
 			}
 		});
 		bandPane.add(band1.getList());
@@ -134,9 +133,8 @@ public class MainFrame extends JFrame {
 
 	private void initUI() {
 		setResizable(false);
-		JPanel bandPanel = new JPanel();
 		JPanel pane = new JPanel();
-		text.setPreferredSize(new Dimension(400,100));
+		text.setPreferredSize(new Dimension(400, 100));
 		initDrawer(pane);
 		initButtons();
 		initBands(pane);
@@ -146,7 +144,6 @@ public class MainFrame extends JFrame {
 		pane.add(exitJButton);
 		pane.add(text);
 		add(pane);
-		// add(bandPanel);
 	}
 
 	MainFrame() {
@@ -170,7 +167,7 @@ public class MainFrame extends JFrame {
 
 	public static void main(String[] args) {
 
-		// Make
+		// Makes frame :)
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
